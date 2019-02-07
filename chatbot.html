@@ -1,0 +1,62 @@
+<!--Myron Woods-->
+<html>
+<head>
+<title> Guessing ChatBot</title>
+<script type= " text/javascript" src = "chatbot.js"></script>
+<script type = "text/javascript">
+var feed ="";
+window.onload = function init()
+{
+    var chatbox = document.getElementById("chatoutput");
+    chatbox.value = "Chat Bot: Can you guess the animal im thinkng of?"
+}
+function getResponse()
+{
+var userInput = document.getElementById("chatinput").value;
+feed += "You: " + userInput + "\n";
+<!-- introduction -->
+keyResponseAny("Hi there! Can you guess my favorite animal?",
+        "hi","hello","how are you","howdy");
+<!-- where the animal DOESNT lives -->        
+keyResponseAny("Nope, the animal doesn't live there.",
+        "ocean","desert","tundra","grasslands","tree");
+<!-- where the animal DOES lives --> 
+keyResponseAny("Yes, the animal does live there.",
+        "woods","forest","cave","snow","land");
+<!-- how many legs the animal DOES have -->
+keyResponseAll("Yep.  That animal has four legs.",
+        "four","legs");
+<!-- features the animal DOESNT have -->        
+keyResponseAny("No, the animal doesn't have that characteristic.",
+        "wings","beak","feathers","scales","spots", "shell","herbivore");        
+<!-- features the animal DOES have --> 		
+keyResponseAny("Yes, but its not that long.", "tail");
+keyResponseAny("Yes, the animal has that trait.",
+"fur","paws","black", "brown","mammal","tall","meat");        
+keyResponseAny("No, its not that type of animal.",
+"reptile","amphibian","bird","fish","insect","dinosaur");
+<!--Answer-->
+keyResponseAny("YES! You guessed it!",
+"bear");
+
+
+<!--no keywords found -->
+noMatchMessage("You can do better!");
+noMatchMessage("Thats not a good guess, try again!");
+noMatchMessage("Don't be so specific");
+noMatchMessage("Don't think the animal has that feature.")
+feed += "Chat Bot: "+getAnswer(userInput)+"\n";
+document.getElementById("chatoutput").value=feed;        
+}
+</script>
+</head>
+<body style = "background-color: lightblue">
+<h1> Welcome to the guessing game: </h1>
+<textarea cols = "80" id = "chatoutput" readonly="readonly" rows="10">
+</textarea>
+<p>Your Question:
+<input type = "text" id = "chatinput" value = "">
+<input type = "button" onclick = "getResponse()" value = "Ask Your Question">
+</p>
+</body>
+</html>
